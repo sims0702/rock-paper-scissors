@@ -1,0 +1,23 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  align-items: center;
+  background: #000;
+  color: #fff;
+  display: flex;
+  font-family: "Karantina", cursive;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+h1 {
+  font-size: 10rem;
+  position: relative;
+  bottom: 100px;
+}
