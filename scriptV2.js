@@ -38,9 +38,11 @@ function playRound(computerSelection, playerSelection) {
     } else if (counterComputer < counterPlayer) {
       heading.textContent = `Congratulations! You have won the game!\n The end score was ${counterPlayer} vs ${counterComputer} for you.`;
     } else {
-      heading.textContent = `The game tied!`;
+      heading.textContent = `The game ended in a tie!`;
     }
-    const container = document.getElementsByClassName(".results");
+    gamesLeft.remove();
+    para.remove();
+    heading.style.fontSize = "8rem";
     console.log(counter);
   }
 
@@ -87,7 +89,6 @@ function playRound(computerSelection, playerSelection) {
   }
   console.log(playerSelection, computerSelection);
   console.log(counterPlayer, counterComputer);
-  container.appendChild(para);
 }
 
 // Callback for event handler
