@@ -14,45 +14,86 @@ let computerGuess = () => {
     : "scissors";
 };
 
-// Prompt user input
-function playerGuess() {}
+// intializing counters
+let counter = 5;
+let counterComputer = 0;
+let counterPlayer = 0;
 // 1 game between player and computer
+const heading = document.querySelector(`h1`);
+const gamesLeft = document.createElement(`p`);
+const para = document.createElement(`p`);
+
 function playRound(computerSelection, playerSelection) {
+  if (counter > 0) {
+    counter--;
+  }
+
+  gamesLeft.textContent = `Games left to play: ${counter}`;
+  heading.after(gamesLeft);
+  gamesLeft.after(para);
+
+  if (counter === 0) {
+    if (counterComputer > counterPlayer) {
+      heading.textContent = `What a disaster! You lost again your opponent with ${counterComputer} vs ${counterPlayer}...`;
+    } else if (counterComputer < counterPlayer) {
+      heading.textContent = `Congratulations! You have won the game!\n The end score was ${counterPlayer} vs ${counterComputer} for you.`;
+    } else {
+      heading.textContent = `The game tied!`;
+    }
+    const container = document.getElementsByClassName(".results");
+    console.log(counter);
+  }
+
   const userWin = `You win! ${playerSelection} beats ${computerSelection}!`;
   const userLoss = `You lose! ${computerSelection} beats ${playerSelection}!`;
 
-  if (computerSelection == playerSelection) {
-    return alert(`This game is a tie!`);
+  if (computerSelection === playerSelection) {
+    para.textContent = `This game was a tie!`;
+    counterComputer++;
+    counterPlayer++;
+  } else {
+    switch (playerSelection) {
+      case "rock":
+        if (computerSelection === "paper") {
+          para.textContent = userLoss;
+          counterComputer++;
+          break;
+        } else {
+          para.textContent = userWin;
+          counterPlayer++;
+          break;
+        }
+      case "paper":
+        if (computerSelection === "scissors") {
+          para.textContent = userLoss;
+          counterComputer++;
+          break;
+        } else {
+          para.textContent = userWin;
+          counterPlayer++;
+          break;
+        }
+      case "scissors":
+        if (computerSelection === "rock") {
+          counterComputer++;
+          para.textContent = userLoss;
+          break;
+        } else {
+          para.textContent = userWin;
+          counterPlayer++;
+          break;
+        }
+    }
   }
-
-  switch (playerSelection) {
-    case "rock":
-      if (computerSelection === "paper") {
-        return alert(userLoss);
-      } else {
-        return alert(userWin);
-      }
-    case "paper":
-      if (computerSelection === "scissors") {
-        return alert(userLoss);
-      } else {
-        return alert(userWin);
-      }
-    case "scissors":
-      if (computerSelection == "rock") {
-        return alert(userLoss);
-      } else {
-        return alert(userWin);
-      }
-  }
+  console.log(playerSelection, computerSelection);
+  console.log(counterPlayer, counterComputer);
+  container.appendChild(para);
 }
 
 // Callback for event handler
 function eventHandler(e) {
-  console.log(e);
-  return playRound(computerGuess, playerGuess);
+  return playRound(computerGuess(), e.target.id);
 }
-
 const buttons = Array.from(document.querySelectorAll(".btn"));
 buttons.forEach((button) => {
   button.addEventListener("click", eventHandler);
