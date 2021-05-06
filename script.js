@@ -81,19 +81,19 @@ function MessageForEveryRound(currentRound, numberOfRounds) {
 }
 
 // Playgames specified by user. #BRINING IT ALL TOGETHER
-function playGame_n_Times() {
-  showWelcomeMessage();
-  const n = prompt(`AS A STARTER:
-  How many round would you like to play?`);
-  // Creating a game of five games
-  for (i = 1; i <= n; i++) {
-    MessageForEveryRound(i, n);
-    playRound(computerGuess(), playerGuess());
-  }
-  alert(`This was the end of the game!`);
-}
+// function playGame_n_Times() {
+//   showWelcomeMessage();
+//   const n = prompt(`AS A STARTER:
+//   How many round would you like to play?`);
+//   // Creating a game of five games
+//   for (i = 1; i <= n; i++) {
+//     MessageForEveryRound(i, n);
+//     playRound(computerGuess(), playerGuess());
+//   }
+//   alert(`This was the end of the game!`);
+// }
 
-playGame_n_Times();
+// playGame_n_Times();
 
 /**** FOR TESTING PURPOSES ****/
 // console.log(playRound(computerGuess(), playerGuess()));
